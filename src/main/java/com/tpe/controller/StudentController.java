@@ -2,15 +2,15 @@ package com.tpe.controller;
 
 
 import com.tpe.domain.Student;
+import com.tpe.exception.ResourceNotFoundException;
 import com.tpe.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 //15
@@ -51,7 +51,12 @@ public class StudentController {
     //28 save/create student: response olarak tum studentlari gosterelim
     //19 http://localhost:8080/SpringMvc/students/saveStudent + post ile gelen requesti karsilamam gerekiyorbu istedi karsilamak
     @PostMapping("/saveStudent")
-    public String createStudent(@ModelAttribute Student student){
+    public String createStudent(@Valid @ModelAttribute Student student, BindingResult bindingResult){
+
+        //validaston hatasi varsa formu goster.
+        if (bindingResult.hasErrors()){
+            return "studentForm";
+        }
        //31
         service.saveStudent(student);
 
@@ -74,7 +79,41 @@ public class StudentController {
     }
 
     //32
+    //update
+    //http://localhost:8080/SpringMvc/students/update?id=1 + get
+    @GetMapping("/update")
+    public ModelAndView showStudentForm(@RequestParam("id") Long id){
+        Student foundStudent= service.findStudentById(id);
+        ModelAndView mav= new ModelAndView();
+        mav.addObject("student",foundStudent);//idsi 1 olan secilmisse 1 olanin bilgileri gelicek
+        mav.setViewName("studentForm");
+        return mav;
+    }
+    //@RequestParam: bir metodun cagrilmasi sirasinda request ile bir query arametreyi almasini saglar
+    //studentFormda <form:hidden path="id" /> var bununla idsi varsa update edecek
 
+
+    //33 delete
+    //delete: tum studentlari gosterelim
+    //http://localhost:8080/SpringMvc/students/delete/1 +get
+    @GetMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable("id") Long id){
+        service.deleteStudent(id);
+        return "redirect:/students";
+    }
+    //@PathVariable request icindeki path prmtresinin degerini metodun parametresi olarak almamizi saglar
+
+    //34
+    //exception aldigimizda bunu handle etmedik
+    //try-catch in catch gibi calisan bir annotasyon
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ModelAndView handleNotFoundException(Exception ex){
+        ModelAndView mav= new ModelAndView();
+        mav.addObject("message",ex.getMessage());
+        mav.setViewName("notFound");//hangi jsp dosyasi
+
+        return mav;
+    }
 
 
 }
