@@ -1,0 +1,32 @@
+web uygulamasi nedir nasil calisir?
+ara yuz olarak web sitelerinin kullanildigi uygulamalardir
+
+static web app:kullanicinin girdigi degere gore degismeyen sayfalara static saylar denr. bir uygulama tamamen static sayfalardan olusuyorsa static
+web uygulamasidir
+dynamic web app:kullaniciya gore degiskenlik gosteren dinamik sayfalardan olusan uygulamalardir. bu uygulamalar database kullanmayi gerektirir
+
+● Web browser tarafından istenen statik sayfa, web sunucu tarafından bulunur ve doğrudan gönderilir.
+● Web browser tarafından istenen dinamik sayfa için ise isteği işlemekten sorumlu özel yazılımın bu sayfayı üretmesi gerekir. or:logine tikladigimizda.
+
+servlet: gelen http requestleri uygun sekilde cevaplanmasini saglayan java sinifidir.
+servler container: servlet classlarnin calistirilip uygulamaya yuklenmesini saglayan ve kullaniciya cevabin dondurulmesini saglayan yazilim.
+java icin en populer servlet conteiner :tomcat server
+
+Spring MVC
+ Java ile web uygulamaları yapmak için bir Framework’dür
+
+ Model-View-Controller design pattern üzerine inşa edilmiştir.(MVC)
+Model: verilen modellendigi katman. pojo classlar, entityler
+View: kullaniciya sunulan son goruntu. sonucun gosterildigi bolum
+Controller: Clienttan gelen istekleri karsilayip, dbden model getirmek gerekiyorsa getirip, manipulasyon yapmak gerekiyorsa manipule edip, kıllanicidan
+gelen requeste uygun bir cevabi hazirlayip bu cevabi viewdeki hangi sayfa ile goruntulencekse bu cevapla birlikte goruntu katmaninda goruntulencek
+sayfanin ismini clienta gonderir.
+
+ Dynamic Web Application oluşturulabilir
+
+ RESTFUL service üretmek için kullanılabilir
+RESTFUL service: restapiyi kullanarak uygulama gelistiren uygulamalara restful denir
+
+ Core Spring Framework(IoC, DI) ün getirdiğin kolaylığı sağlar
+
+

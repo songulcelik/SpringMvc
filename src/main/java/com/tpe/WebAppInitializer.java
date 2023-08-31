@@ -17,13 +17,12 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 //web.xml yerine bu claası kullanacağız. web.xml i sildik. neden cunku mvc kod bazli config imkani sunuyor
 
 ////2 extend ettik override ettik
-//AbstractAnnot... : classının metodlarını override ederek DispatcherServletın config
+//AbstractAnnot... : classının metodlarını override ederek spring mvc icin DispatcherServletın config
 // ve başlatılmasını kolaylaştırır.
-
 
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     /*
-   dispatcherin bilesenleri : Servlet WebbAppContext-->controller-viewresolver-handlermapping,, goruntu dosyasinin cozumlenmesini saglar-
+   dispatcherin bilesenleri : Servlet WebbAppContext-->controllers-viewresolver-handlermapping,,
                                Root WebApp Context-->dataya erisimle ilgili bilesenleri iceriyor:service-repositor
    bu bilenleri config etmemiz lazim
     */
