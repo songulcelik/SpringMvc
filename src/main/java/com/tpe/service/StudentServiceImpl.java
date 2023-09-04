@@ -10,7 +10,6 @@ import java.util.List;
 //27
 @Service//bu classtan bir tane obje uretilip tum uygulama boyunca kullanilsin spring tarafindan
 public class StudentServiceImpl implements StudentService{
-    //28
     @Autowired
     private StudentRepository repo;
 
@@ -39,3 +38,4 @@ public class StudentServiceImpl implements StudentService{
         repo.delete(student.getId());
     }
 }
+//28 icin StudentController a git

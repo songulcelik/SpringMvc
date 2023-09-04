@@ -11,14 +11,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-//20
+
 @Repository//dbye erisim olan bir class oldugunu belirtiyorum
 public class StudentRepositoryImpl implements StudentRepository{
 
     //21 bir objeye ihtiyacim var kendim olusturmak yerine spring olustursun diye component diyorduk
     //onun yerine @Repository
 
-    //22rootta session factory olusturan bean vardi. onedenle fiel olusturduk injection yap dedik
+    //22rootta session factory olusturan bean vardi. o nedenle fiel olusturduk injection yap dedik
     @Autowired
     private SessionFactory sessionFactory;
     @Override
@@ -59,13 +59,14 @@ public class StudentRepositoryImpl implements StudentRepository{
 
         return opt;
     }
+    //26 icin studentserviceye git
 
     //24
     @Override
     public void delete(Long id) {
         Session session= sessionFactory.openSession();
         Transaction tx=session.beginTransaction();
-        Student student=session.load(Student.class,id);
+        Student student=session.load(Student.class,id);//objeye baska islemler icin gerek olmadigi icin load kullandim
         session.delete(student);
 
         tx.commit();

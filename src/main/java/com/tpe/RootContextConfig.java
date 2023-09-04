@@ -10,7 +10,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 import javax.sql.DataSource;
 import java.util.Properties;
-//9 kodlari acik acik yazmamak icin properties uzantili dosya olustururz. java aktindaki resourcesde olusturuyoruz
+//9 kodlari acik acik yazmamak icin properties uzantili dosya olustururz. java aktindaki resourcesde olusturuyoruz!
 @Configuration
 @PropertySource("classpath:db.properties")//properti dosyasinin yerini
 public class RootContextConfig {
@@ -32,10 +32,9 @@ public class RootContextConfig {
 
     //12 ;//JDBC ile ilgili özellikler
     //neden private sadece bu classta parametre olarak girmek icin olusturduk
-
     private DataSource dataSource(){
         DriverManagerDataSource dataSource=new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName" ));
+        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName" ));//properties dosyasinda okucaz
         dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
         dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
         dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));

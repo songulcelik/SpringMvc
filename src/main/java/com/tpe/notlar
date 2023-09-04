@@ -29,4 +29,4 @@ RESTFUL service: restapiyi kullanarak uygulama gelistiren uygulamalara restful d
 
  Core Spring Framework(IoC, DI) ün getirdiğin kolaylığı sağlar
 
-
+ilk class WebAppInitializer
